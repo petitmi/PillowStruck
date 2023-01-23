@@ -4,6 +4,7 @@ import yaml
 
 class Account():
     def __init__(self):
+        # Set the token url and token type. The client_id and client_secret is in the config.yml file and gitignored.
         self.token_url = 'https://accounts.spotify.com/api/token'
         self.token_data = {'grant_type':'client_credentials'}
         with open('config.yml', "r") as f:
