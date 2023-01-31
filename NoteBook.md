@@ -21,4 +21,4 @@
 ### WEEK FOUR (Jan/30th-Feb/5th)
 - Group meeting (Discuss API interface issues)
 - Started to Work on the Test file and Coverage
-- Worked on the Musixmatch API to get lyrics(finally decided to use Web Crawling instead of API)
+- Worked on the Musixmatch API to get lyrics, decided to use Web Crawling instead of API
