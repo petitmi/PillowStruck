@@ -1,4 +1,4 @@
-from search import *
+from codes.search import *
 
 def main():
     s = Searcher()
