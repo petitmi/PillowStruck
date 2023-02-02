@@ -20,33 +20,35 @@ class Lyrics:
 
     def get_lyrics(self,q=[['David-Bowie','Space-Oddity']]):
         for pairs in q:
-            req = self.ss.get(
+            f = open(f"{pairs[0]}_{pairs[1]}.txt", "a")
+            f.write(str(pairs))
+            req = requests.get(
               f'https://www.musixmatch.com/lyrics/{pairs[0]}/{pairs[1]}', 
               headers=self.headers
             )
             soup = BeautifulSoup(req.text, features="lxml")
             spans = soup.find_all('span', attrs={'class':'lyrics__content__ok'})
             for span in spans:
-                print(span.string)
+                f.write(span.string)
             time.sleep(random.uniform(0.8, 0.2))
+        f.close()
+
     def sentiment_analysis_on_lyrics(self,q):
-      a = Lyrics()
-      a.get_lyrics(q)
-      
-      with open(f'{q[0][0]}_{q[0][1]}.txt') as f:
-          raw_data = f.read().splitlines()
-          raw_data = [i for i in raw_data if i != '']
-      classifier = pipeline("sentiment-analysis", model=self.model, tokenizer=self.tokenizer)
-      rsts = classifier(raw_data)
-      print(rsts)
-      scores = pd.DataFrame()
-      for rst_index in range(len(rsts)):
-          if rsts[rst_index]['label']=='positive':
-              score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[rsts[rst_index]['score']]})
-          elif rsts[rst_index]['label']=='negative':
-              score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[-rsts[rst_index]['score']]})
-          else :
-              score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[0]})
-          scores = pd.concat([scores, score_nl], ignore_index=True)
-      return scores
+        self.get_lyrics(q)
+        
+        with open(f'{q[0][0]}_{q[0][1]}.txt') as f:
+            raw_data = f.read().splitlines()
+            raw_data = [i for i in raw_data if i != '']
+        classifier = pipeline("sentiment-analysis", model=self.model, tokenizer=self.tokenizer)
+        rsts = classifier(raw_data)
+        scores = pd.DataFrame()
+        for rst_index in range(len(rsts)):
+            if rsts[rst_index]['label']=='positive':
+                score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[rsts[rst_index]['score']]})
+            elif rsts[rst_index]['label']=='negative':
+                score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[-rsts[rst_index]['score']]})
+            else :
+                score_nl = pd.DataFrame(data={'line':[raw_data[rst_index]],'score':[0]})
+            scores = pd.concat([scores, score_nl], ignore_index=True)
+        return scores
             
