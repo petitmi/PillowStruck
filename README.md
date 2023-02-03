@@ -1,6 +1,6 @@
-# pillowStruck
+# PillowStruck
 
-PillowStruck use spotify and Genius APIs to implement a wrapped API for informations of specific artists or tracks with pyhton.
+PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wrapper for analysis of specific artists, albums and tracks with pyhton.
 
 - Group name: **PillowStruck**
 - Members of the group: **Nyx Zhang, Tia Wang**
