@@ -14,10 +14,9 @@ class LyricsRub:
         self.ss = requests.Session()
 
     def get_lyrics_link(self, qs):
-        print(qs)
+        '''Using web crawling to search and locate to track'''
         paths = []
         for q in qs:
-            print('link:', f'https://www.musixmatch.com/search/{q}')
             req = self.ss.get(f'https://www.musixmatch.com/search/{q}',headers=self.headers) 
             soup = BeautifulSoup(req.text, features="lxml")
             h2s = soup.find_all('h2',attrs={'class':'media-card-title'})
@@ -26,7 +25,8 @@ class LyricsRub:
             time.sleep(random.uniform(0.8, 0.2))
         return paths
             
-    def get_lyrics(self, qs=['space%20oddity%20david%20bowie']):
+    def get_lyrics(self, qs):
+        '''Using web crawling to get the lyrics of the destinated track'''
         paths = self.get_lyrics_link(qs)
         filenames = []
         for path in paths:
@@ -55,5 +55,25 @@ class LyricsRub:
         f.close()
         return filenames
 
+    def process_lyrics(self,qs=['space%20oddity%20david%20bowie']):
+        """ 
+        Processing lyrics and get those objects:
+        filenames: ['', '']    
+        lyrics_line_lst: [['',''],['','']]
+        lyrics_str_lst: ['','']
+        comp_lyrics_line_lst:['','']
+        comp_lyrics_str: ''
+        """
+        filenames = self.get_lyrics(qs)
+        lyrics_line_lst = []
+        lyrics_str_lst=[]
+        for filename in filenames:
+            with open(filename) as f:
+                raw_data = f.read().splitlines()
+                raw_data = [i for i in raw_data if i != '']
+                lyrics_line_lst.append(raw_data)
+                lyrics_str_lst.append('. '.join(raw_data))
+        comp_lyrics_str = '. '.join(lyrics_str_lst)
+        comp_lyrics_line_lst = [item for sublist in lyrics_line_lst for item in sublist]
 
-            
+        return filenames, comp_lyrics_str, comp_lyrics_line_lst, lyrics_str_lst, lyrics_line_lst
