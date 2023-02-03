@@ -2,7 +2,7 @@ import base64
 import requests
 import yaml
 
-class Account():
+class SpotifyStare():
     def __init__(self):
         # Set the token url and token type. The client_id and client_secret is in the config.yml file and gitignored.
         self.token_url = 'https://accounts.spotify.com/api/token'
@@ -22,3 +22,10 @@ class Account():
         req = requests.post(self.token_url, data=self.token_data, headers=token_headers)
         resp_token = req.json()
         return resp_token
+
+    def search(self, type='track,artist',q='the%201975'):
+        resp_token= self.login()
+        search_headers= {'Content-Type': 'application/json', 'Host': 'api.spotify.com', "Authorization": f"Bearer {resp_token['access_token']}"}
+        req_search = requests.get(f'https://api.spotify.com/v1/search?type={type}&q={q}', headers=search_headers)
+        return req_search
+

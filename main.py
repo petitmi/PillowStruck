@@ -1,7 +1,7 @@
-from codes.search import *
+from codes.spotify_stare import *
 
 def main():
-    s = Searcher()
+    s = SpotifyStare()
     result = s.search(type = 'artist', q='the%201975')
     print(result.json())
 
