@@ -16,9 +16,10 @@
 - Uploaded the Searching function, decided to use the Web API instead of their python SDK
 - group meeting (Share task progress)
 - Worked on the sub task individually
+- Worked on the Musixmatch API to get lyrics, decided to use Web Crawling instead of API
 - Modified config file
 
 ### WEEK FOUR (Jan/30th-Feb/5th)
 - Group meeting (Discuss API interface issues)
 - Started to Work on the Test file and Coverage
-- Worked on the Musixmatch API to get lyrics, decided to use Web Crawling instead of API
+- wrote the word cloud and sentiment analysis on lyrics
