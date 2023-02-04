@@ -3,11 +3,15 @@ from lyrics_rub import LyricsRub
 from wordcloud import WordCloud
 import tweetnlp
 import matplotlib.pyplot as plt
+import altair as alt
+from altair_saver import save
+
 
 class LyricsStruck():
     def __init__(self,qs=['space%20oddity%20david%20bowie']):
         getLyrics = LyricsRub()
         self.filenames, self.comp_lyrics_str, self.comp_lyrics_line_lst, self.lyrics_str_lst, self.lyrics_line_lst = getLyrics.process_lyrics(qs)
+        alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
 
     def word_cloud(self):
         fig, ax = plt.subplots()
@@ -17,11 +21,10 @@ class LyricsStruck():
         ax.imshow(wordcloud)
         ax.axis('off')
         ax.set_title('&'.join(self.filenames[7:-4]))
-        
         plt.show()
         # plt.savefig(f"{self.filenames[idx+1]}.png")     
 
-    def sentiment_analysis(self):
+    def analyze_sentiment(self):
         # multiple tracks input
         model = tweetnlp.load_model('sentiment')  # Or `model = tweetnlp.Sentiment()` 
 
@@ -43,3 +46,37 @@ class LyricsStruck():
         _comp_score = model.sentiment(self.comp_lyrics_str, return_probability=True)
         comp_score = {'label':_comp_score['label'],'score':_comp_score['probability'][_comp_score['label']]}
         return comp_score, track_score, line_track_score
+    
+    def visualize_sentiment(self):
+
+        comp_score, track_score, line_track_score = self.analyze_sentiment()
+        df = line_track_score['David-Bowie_Space-Oddity-Solo-Home-Demo-Fragment'].reset_index()
+        df['score']=df['score'].round(2)
+        source = df.loc[1:,]
+        #set colors
+        color_scale = alt.Scale(
+            domain=["positive","neutral","negative"],range=["#FF5F1F", "#008000", "#483D8B"]
+        )
+        chart_title = alt.TitleParams(
+        'Lyric Lines Sentiment Analysis',    
+        subtitle = df.loc[:0,]['line'].values[0]
+        )
+        #make bar plot
+        bars = alt.Chart(source,title=chart_title).mark_bar().encode(
+            x=alt.X('mean(score):Q'),
+            y=alt.Y('line:N', sort=None),
+            color = alt.Color('label:N',title = 'Sentiment label', scale=color_scale,),
+            opacity=alt.Opacity('mean(score):Q')
+        )
+        # add tezt
+        text = bars.mark_text(color='white',align='left',dx=3).encode(
+            text='mean(score):Q'
+        )
+
+        chart = bars + text
+        chart.properties(height=600).configure_axisY(
+            titleAngle=0, titleY=-10,titleX=-60,labelPadding=160, labelAlign='left'
+        )
+        
+        chart.save(f"{df.iloc[0,0]}.png")
+        
