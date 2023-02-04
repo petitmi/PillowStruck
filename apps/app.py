@@ -1,16 +1,25 @@
 from flask import Flask,render_template, request, redirect, url_for, session
+from flask_caching import Cache
+
 import urllib.parse
 from spotify_stare import *
 from lyrics_rub import *
 import pandas as pd
 from lyrics_struck import *
+from artist_struck import *
 import logging
 
 logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
-
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
 def create_app():
     # create and configure the app
     app = Flask(__name__)
+    app.config.from_mapping(config)
+    cache = Cache(app)
     app.secret_key = 'shit123kjnsdf(()*3kj'
     l = SpotifyStare()
 
@@ -26,6 +35,7 @@ def create_app():
             return render_template('search.html')
 
     @app.route('/result')
+    @cache.cached(timeout=50)
     def result():
         keyword=session['keyword']
         artists, albums, tracks = l.search(q=session['keyword_encode'])
@@ -33,9 +43,9 @@ def create_app():
         return render_template(
             'result.html',
             keyword = keyword,
-            artists = artists.loc[:5,['artist','followers','genres','explore']].to_html(escape=False),
+            artists = artists.loc[:3,['artist','followers','genres','explore']].to_html(escape=False),
             albums = albums.loc[:5,['album','release_date','artist','total_tracks','explore']].to_html(escape=False),
-            tracks = tracks.loc[:10,['track','release_date','popularity','artist','album','explore']].to_html(escape=False)
+            tracks = tracks.loc[:7,['track','release_date','popularity','artist','album','explore']].to_html(escape=False)
         )
         
     @app.route('/track/<artist>_<track>')
@@ -58,6 +68,23 @@ def create_app():
             track =track,artist=artist,
             lyrics = lyrics,
             wordcloud_pic=wordcloud_pic
+        )
+
+    @app.route('/artist/<artist>')
+    @cache.cached(timeout=50)
+    def artist(artist=None):
+        try:
+            ats = ArtistStruck()
+            at_name = ats.get_artist_track_numbers_for_years(artist)
+            pop_tracks = ats.get_artist_top_tracks_by_name(artist)
+            pop_albums = ats.get_artist_albums_by_name(artist)
+        except Exception as ex:
+            logging.warning(ex)
+            at_name,pop_tracks,pop_albums= None, None, None
+
+        return render_template(
+            'artist.html',artist=artist, artist_pic = f'{at_name}.png',
+            pop_albums=pop_albums.to_html(),pop_tracks=pop_tracks.to_html()
         )
         
     return app 

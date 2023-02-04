@@ -42,7 +42,6 @@ class LyricsRub:
             #get lyrics from musixmatch
             req = self.ss.get(f'https://www.musixmatch.com{path}', headers=self.headers
             )
-            print('=============',req.text)
             soup = BeautifulSoup(req.text, features="lxml")
             spans = soup.find_all('span', attrs={'class':'lyrics__content__ok'})
             for span in spans:
@@ -62,7 +61,6 @@ class LyricsRub:
         """
         filename = self.get_lyrics(q)
         lyrics_line_lst = []
-        print(',,,,,,,,,,,,,,,,,',filename)
         with open(filename) as f:
             lyrics_line_lst = f.read().splitlines()
             lyrics_line_lst = [i for i in lyrics_line_lst if i != '']
