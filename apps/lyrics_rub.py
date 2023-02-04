@@ -25,7 +25,7 @@ class LyricsRub:
         time.sleep(random.uniform(0.8, 0.2))
         return path
             
-    def get_lyrics(self, q):
+    def get_lyrics(self, q='space%20oddity%20david%20bowie'):
         '''Using web crawling to get the lyrics of the destinated track'''
         path = self.get_lyrics_link(q)
     
@@ -50,7 +50,7 @@ class LyricsRub:
             f.close()
         return filename
 
-    def process_lyrics(self,q='space%20oddity%20david%20bowie'):
+    def process_lyrics(self,filename):
         """ 
         Processing lyrics and get those objects:
         filenames: ['', '']    
@@ -59,11 +59,10 @@ class LyricsRub:
         comp_lyrics_line_lst:['','']
         comp_lyrics_str: ''
         """
-        filename = self.get_lyrics(q)
         lyrics_line_lst = []
         with open(filename) as f:
             lyrics_line_lst = f.read().splitlines()
             lyrics_line_lst = [i for i in lyrics_line_lst if i != '']
             lyrics_str='. '.join(lyrics_line_lst)
 
-        return filename, lyrics_str, lyrics_line_lst
+        return  lyrics_str, lyrics_line_lst

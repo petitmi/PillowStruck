@@ -102,5 +102,5 @@ class ArtistStruck:
         my_data['Release Date']=my_data['Release Date'].dt.year
         fig = my_data.plot(x='Release Date',y= 'Track Counts',kind='bar',figsize=(10, 4),fontsize=8)
         fig=fig.get_figure()
-        fig.savefig(f'static/{name}.png')
+        fig.savefig(f'static/artists/{name}.png')
         return name

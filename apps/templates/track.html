@@ -48,9 +48,12 @@ table {
   <div style="width:80%;margin-left: auto;margin-right: auto;">
 
     <a href="/" >Home</a>
-    <h1>{{track}}</h1>
-    </div>>
-    <img src={{ url_for('static', filename=wordcloud_pic ) }}  style="display: block;width:80%;  margin-left: auto; margin-right: auto;">
+    <h1>TRACK&nbsp-&nbsp{{track}}</h1>
+    </div>
+    <img src={{ url_for('static', filename='tracks/{}'.format(wordcloud_pic) ) }} style="display: block;width:80%;  margin-left: auto; margin-right: auto;">
+
+<br>
+<img src={{ url_for('static', filename='tracks/lyrics_{}.png'.format(lyrics_pic) ) }} style="display: block;width:80%;  margin-left: auto; margin-right: auto;">
 <br>
     {{lyrics | safe}}
 <br>

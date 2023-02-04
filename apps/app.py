@@ -53,21 +53,29 @@ def create_app():
         q=f'{track}%20{artist}'
         logging.info(q)
         try:
-            ls=LyricsStruck(q)
+            # get lyrics file
+            lr=LyricsRub()
+            filename = lr.get_lyrics(q)
+            ls=LyricsStruck(filename)
             lyrics_line_lst = ls.lyrics_line_lst
             lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
             lyrics = lyrics.to_html()
             wordcloud_pic = ls.word_cloud()
+            print(wordcloud_pic)
+            lyrics_pic = lyrics_line_lst[0]
+            print(lyrics_pic)
         except Exception as ex:
             logging.warning(ex)
             lyrics=None
             wordcloud_pic=''
+            lyrics_pic=''
 
         return render_template(
             'track.html',
             track =track,artist=artist,
             lyrics = lyrics,
-            wordcloud_pic=wordcloud_pic
+            wordcloud_pic=wordcloud_pic,
+            lyrics_pic=lyrics_pic
         )
 
     @app.route('/artist/<artist>')
