@@ -4,6 +4,9 @@ from spotify_stare import *
 from lyrics_rub import *
 import pandas as pd
 from lyrics_struck import *
+import logging
+
+logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 
 def create_app():
     # create and configure the app
@@ -30,23 +33,30 @@ def create_app():
         return render_template(
             'result.html',
             keyword = keyword,
-            artists = artists.loc[:10,['artist','followers','genres','explore']].to_html(escape=False),
+            artists = artists.loc[:5,['artist','followers','genres','explore']].to_html(escape=False),
             albums = albums.loc[:5,['album','release_date','artist','total_tracks','explore']].to_html(escape=False),
-            tracks = tracks.loc[:5,['track','release_date','popularity','artist','album','explore']].to_html(escape=False)
+            tracks = tracks.loc[:10,['track','release_date','popularity','artist','album','explore']].to_html(escape=False)
         )
         
     @app.route('/track/<artist>_<track>')
     def track(track=None,artist=None):
-        qs=[f'{artist}%20{track}']
-        ls=LyricsStruck(qs)
-        lyrics_line_lst = ls.lyrics_line_lst
-        lyrics = pd.DataFrame(lyrics_line_lst[0][1:],columns=[lyrics_line_lst[0][0]])
-        wordcloud_pic = ls.word_cloud()
+        q=f'{track}%20{artist}'
+        logging.info(q)
+        try:
+            ls=LyricsStruck(q)
+            lyrics_line_lst = ls.lyrics_line_lst
+            lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
+            lyrics = lyrics.to_html()
+            wordcloud_pic = ls.word_cloud()
+        except Exception as ex:
+            logging.warning(ex)
+            lyrics=None
+            wordcloud_pic=''
 
         return render_template(
             'track.html',
             track =track,artist=artist,
-            lyrics = lyrics.to_html(),
+            lyrics = lyrics,
             wordcloud_pic=wordcloud_pic
         )
         
