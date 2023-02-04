@@ -1,30 +1,33 @@
-import pandas as pd
-from lyrics_rub import LyricsRub
-from wordcloud import WordCloud
-import tweetnlp
-import matplotlib.pyplot as plt
-import altair as alt
-from altair_saver import save
 
+from lyrics_rub import LyricsRub
+import os
 
 class LyricsStruck():
     def __init__(self,qs=['space%20oddity%20david%20bowie']):
         getLyrics = LyricsRub()
         self.filenames, self.comp_lyrics_str, self.comp_lyrics_line_lst, self.lyrics_str_lst, self.lyrics_line_lst = getLyrics.process_lyrics(qs)
-        alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
+        
 
     def word_cloud(self):
-        fig, ax = plt.subplots()
-        wordcloud = WordCloud(
-            background_color='black', max_words=200, max_font_size=40, scale=1, random_state=1
-            ).generate(self.comp_lyrics_str)
-        ax.imshow(wordcloud)
-        ax.axis('off')
-        ax.set_title('&'.join(self.filenames[7:-4]))
-        plt.show()
-        # plt.savefig(f"{self.filenames[idx+1]}.png")     
+        from wordcloud import WordCloud
+
+        wordcloud_pic = f"wordcloud_{self.lyrics_line_lst[0][0]}.png"
+        if not os.path.exists(wordcloud_pic):
+            wordcloud = WordCloud(
+                background_color='white', colormap='hot',max_words=1200, max_font_size=100, scale=1, random_state=1,width=1600,height=300
+                ).generate(self.comp_lyrics_str)
+            f'static/{wordcloud_pic}'
+            wordcloud.to_file(f'static/{wordcloud_pic}')     
+
+        return wordcloud_pic
+
+        
+            
 
     def analyze_sentiment(self):
+        import tweetnlp
+        import pandas as pd
+
         # multiple tracks input
         model = tweetnlp.load_model('sentiment')  # Or `model = tweetnlp.Sentiment()` 
 
@@ -48,6 +51,8 @@ class LyricsStruck():
         return comp_score, track_score, line_track_score
     
     def visualize_sentiment(self):
+        import altair as alt
+        alt.renderers.enable('altair_saver', fmts=['vega-lite', 'png'])
 
         comp_score, track_score, line_track_score = self.analyze_sentiment()
         df = line_track_score['David-Bowie_Space-Oddity-Solo-Home-Demo-Fragment'].reset_index()

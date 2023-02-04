@@ -32,27 +32,24 @@ class LyricsRub:
         for path in paths:
             trackname = path.split('/')[2:]
             trackname = '_'.join(trackname)
-            filename = f"lyrics/{trackname}.txt"
+            filename = f"../app_computation/lyrics/{trackname}.txt"
             filenames.append(filename)
-            # if file exists, remove it 
-            if os.path.exists(filename):
-              os.remove(filename)
-            # write lyrics title
-            f = open(filename, "a")
-            f.write(trackname+'\n')
+            # if file does not exist:
+            if not os.path.exists(filename):
+            #   os.remove(filename)
+                # write lyrics title
+                f = open(filename, "w")
+                f.write(trackname+'\n')
 
-            #get lyrics from musixmatch
-            req = self.ss.get(
-              f'https://www.musixmatch.com{path}', 
-              headers=self.headers
-            )
-
-            soup = BeautifulSoup(req.text, features="lxml")
-            spans = soup.find_all('span', attrs={'class':'lyrics__content__ok'})
-            for span in spans:
-                f.write(span.string)
-            time.sleep(random.uniform(0.8, 0.2))
-        f.close()
+                #get lyrics from musixmatch
+                req = self.ss.get(f'https://www.musixmatch.com{path}', headers=self.headers
+                )
+                soup = BeautifulSoup(req.text, features="lxml")
+                spans = soup.find_all('span', attrs={'class':'lyrics__content__ok'})
+                for span in spans:
+                    f.write(span.string)
+                time.sleep(random.uniform(0.8, 0.2))
+                f.close()
         return filenames
 
     def process_lyrics(self,qs=['space%20oddity%20david%20bowie']):

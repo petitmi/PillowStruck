@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="icon" href="data:,">
     <!-- <link rel="stylesheet" href="base.css"/> -->
+    </script>
     <style>
+
 body {
     background: #e8762a no-repeat center center fixed;
     background-size: cover;
@@ -44,12 +47,9 @@ table {
 <body>
     <a href="/" >Home</a>
     <h1>The results of "{{keyword}}":</h1>
-    <table>
-        <tr><th>Object</th><th>Type</th></tr>
-        <tr><td><a href='google.com'>Space Oddity</a></td><td>Track</td></tr>
-        <tr><td><a href='google.com'>David Bowie</a></td><td>Artist</td></tr>
-        <tr><td><a href='google.com'>Dunno</a></td><td>Album</td></tr>
+    {{ tracks | safe }} <br>
+    <!-- {{ artists | safe}} <br>
+    {{ albums | safe }} <br> -->
 
-    </table>
 </body>
 </html>
