@@ -9,7 +9,11 @@ from lyrics_struck import *
 from artist_struck import *
 import logging
 
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)
+handler = logging.FileHandler('example.log', 'w', 'utf-8')
+root_logger.addHandler(handler)
+
 config = {
     "DEBUG": True,          # some Flask specific configs
     "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
@@ -51,25 +55,23 @@ def create_app():
     @app.route('/track/<artist>_<track>')
     def track(track=None,artist=None):
         q=f'{track}%20{artist}'
-        logging.info(q)
+        lr=LyricsRub()
+        filename = lr.get_lyrics(q)
+        ls=LyricsStruck(filename)
+        lyrics_line_lst = ls.lyrics_line_lst
+        lyrics_pic = lyrics_line_lst[0]
         try:
             # get lyrics file
-            lr=LyricsRub()
-            filename = lr.get_lyrics(q)
-            ls=LyricsStruck(filename)
-            lyrics_line_lst = ls.lyrics_line_lst
+
             lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
             lyrics = lyrics.to_html()
             wordcloud_pic = ls.word_cloud()
-            print(wordcloud_pic)
-            lyrics_pic = lyrics_line_lst[0]
-            print(lyrics_pic)
+            
         except Exception as ex:
             logging.warning(ex)
             lyrics=None
-            wordcloud_pic=''
-            lyrics_pic=''
-
+            wordcloud_pic="can't get lyrics."
+            lyrics_pic = "can't get lyrics"
         return render_template(
             'track.html',
             track =track,artist=artist,
@@ -94,7 +96,11 @@ def create_app():
             'artist.html',artist=artist, artist_pic = f'{at_name}.png',
             pop_albums=pop_albums.to_html(),pop_tracks=pop_tracks.to_html()
         )
-        
+
+    @app.route('/songs-with-lyrics')
+    def songlist():
+        return render_template('songs-with-lyrics.html')
+    
     return app 
 
 

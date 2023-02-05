@@ -1,15 +1,12 @@
 from lyrics_rub import LyricsRub
 import os
-import logging
 import pandas as pd
-logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
 
 class LyricsStruck():
     def __init__(self,filename):
         getLyrics = LyricsRub()
         self.filename = filename
         self.lyrics_str, self.lyrics_line_lst = getLyrics.process_lyrics(filename)
-        logging.info('------------',filename,'----------',self.lyrics_str, '---------------',self.lyrics_line_lst)
 
 
     def word_cloud(self):
