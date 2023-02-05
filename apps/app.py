@@ -55,11 +55,11 @@ def create_app():
     @app.route('/track/<artist>_<track>')
     def track(track=None,artist=None):
         q=f'{track}%20{artist}'
-        lr=LyricsRub()
-        filename = lr.get_lyrics(q)
-        lyrics_pic = lyrics_line_lst[0]
         try:
             # get lyrics file
+            lr=LyricsRub()
+            filename = lr.get_lyrics(q)
+            lyrics_pic = lyrics_line_lst[0]
             ls=LyricsStruck(filename)
             lyrics_line_lst = ls.lyrics_line_lst
             
@@ -69,11 +69,9 @@ def create_app():
             
         except Exception as ex:
             logging.warning(ex)
-
-
             lyrics=None
-            wordcloud_pic="can't get lyrics."
-            lyrics_pic = "can't get lyrics"
+            wordcloud_pic="Can't get lyrics."
+            lyrics_pic = "Can't get lyrics"
         return render_template(
             'track.html',
             track =track,artist=artist,
