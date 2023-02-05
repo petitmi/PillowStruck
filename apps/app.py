@@ -57,18 +57,20 @@ def create_app():
         q=f'{track}%20{artist}'
         lr=LyricsRub()
         filename = lr.get_lyrics(q)
-        ls=LyricsStruck(filename)
-        lyrics_line_lst = ls.lyrics_line_lst
         lyrics_pic = lyrics_line_lst[0]
         try:
             # get lyrics file
-
+            ls=LyricsStruck(filename)
+            lyrics_line_lst = ls.lyrics_line_lst
+            
             lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
             lyrics = lyrics.to_html()
             wordcloud_pic = ls.word_cloud()
             
         except Exception as ex:
             logging.warning(ex)
+
+
             lyrics=None
             wordcloud_pic="can't get lyrics."
             lyrics_pic = "can't get lyrics"
