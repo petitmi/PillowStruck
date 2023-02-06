@@ -99,6 +99,7 @@ lyrics_analysis.visualize_sentiment() # sentiment analysis picture in apps/stati
 
 **Generate artist activity analysis and more**  
 ```python
+from artist_struck import ArtistStruck
 ats = ArtistStruck()
 at_name = ats.get_artist_track_numbers_for_years(q) # artist activity analysis  picture in apps/static/{artist}.png
 pop_tracks = ats.get_artist_top_tracks_by_name(q) # get top 10 popular tracks
