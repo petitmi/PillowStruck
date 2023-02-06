@@ -56,7 +56,7 @@ PillowStruck
     │   spotify_stare.py
     │   lyrics_rub.py
     │   lyrics_struck.py
-    │   artist_struck,py
+    │   artist_struck.py
     └───[model apps]
     |
     |   app.py
