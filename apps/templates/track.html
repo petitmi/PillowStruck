@@ -53,15 +53,15 @@ table {
     <h1>TRACK&nbsp-&nbsp{{track}}</h1>
   </div>
 
-    {% if lyrics is none %}
-    <a>Due to ip restriction, lyrics is not available. Check available lyrics:</a>
-    <a id='innerlink'>songs</a>
-    {% else %}
+  {% if lyrics_sig==1 %}
+  <a>Due to ip restriction, lyrics is not available. Check available lyrics:</a>
+  <a id='innerlink'>songs</a>
+  {% endif %}
     <img src={{ url_for('static', filename='tracks/{}'.format(wordcloud_pic) ) }} style="display: block;width:80%;  margin-left: auto; margin-right: auto;"><br>
     <img src={{ url_for('static', filename='tracks/lyrics_{}.png'.format(lyrics_pic) ) }} style="display: block;width:80%;  margin-left: auto; margin-right: auto;"><br>
     {{lyrics | safe}}
     <br>
-    {% endif %}
+
 
 </body>
 </html>

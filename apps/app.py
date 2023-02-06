@@ -53,18 +53,21 @@ def create_app():
             lr=LyricsRub()
             filename = lr.get_lyrics(q)
             ls=LyricsStruck(filename)
-            print('ls',ls)
             if ls is not None :
                 lyrics_line_lst = ls.lyrics_line_lst
                 lyrics_pic = lyrics_line_lst[0]
                 lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
+                if len(lyrics)==0:
+                    lyrics_sig = 1
+                else: lyrics_sig = 0
                 lyrics = lyrics.to_html()
                 wordcloud_pic = ls.word_cloud()
             else:
                 lyrics = None
                 lyrics_pic = None
-                wordcloud_pic = None                
-
+                wordcloud_pic = None
+                lyrics_sig = 1                
+            
         except Exception as ex:
             logging.warning(ex)
 
@@ -73,7 +76,8 @@ def create_app():
             track =track,artist=artist,
             lyrics = lyrics,
             wordcloud_pic=wordcloud_pic,
-            lyrics_pic=lyrics_pic
+            lyrics_pic=lyrics_pic,
+            lyrics_sig=lyrics_sig
         )
 
     @app.route('/artist/<artist>')
