@@ -7,4 +7,4 @@ before_install:
   - pip install -U pytest
   - pip install codecov
 script:
-  - python Test.Test_suite.py
+  - python Test_suite.py
