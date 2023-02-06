@@ -9,11 +9,6 @@ from lyrics_struck import *
 from artist_struck import *
 import logging
 
-root_logger = logging.getLogger()
-root_logger.setLevel(logging.DEBUG)
-handler = logging.FileHandler('example.log', 'w', 'utf-8')
-root_logger.addHandler(handler)
-
 config = {
     "DEBUG": True,          # some Flask specific configs
     "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
@@ -107,5 +102,8 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
     app.run(host='0.0.0.0',port=8080,debug=True)
 

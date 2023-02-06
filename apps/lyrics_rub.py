@@ -32,7 +32,6 @@ class LyricsRub:
         # trackname = path.split('/')[2:]
         trackname = track_artist+'_'+track_name
         filename = f"lyrics/{trackname}.txt"
-        print(filename,track_share_url)
         # if file does not exist:
         if not os.path.exists(filename):
         #   os.remove(filename)
