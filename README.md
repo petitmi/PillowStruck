@@ -13,7 +13,7 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 
 # Quick Start
 
-## Web
+## User Interface
 <table>
 <tr><th>Step 1: Search any keyword, including the "track", "artist" Object. </th> <th>Step 2: Get the results contain tracks and artists list.</th>
 
