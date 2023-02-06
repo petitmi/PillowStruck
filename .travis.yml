@@ -8,4 +8,4 @@ before_install:
   - pip install pygame
   - pip install codecov
 script:
-  - python Test_suite.py
+  - python Test.Test_suite.py
