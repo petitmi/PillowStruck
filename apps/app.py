@@ -39,11 +39,9 @@ def create_app():
             return render_template('search.html')
 
     @app.route('/result')
-    @cache.cached(timeout=50)
     def result():
         keyword=session['keyword']
         artists, albums, tracks = l.search(q=session['keyword_encode'])
-
         return render_template(
             'result.html',
             keyword = keyword,
@@ -59,19 +57,22 @@ def create_app():
             # get lyrics file
             lr=LyricsRub()
             filename = lr.get_lyrics(q)
-            lyrics_pic = lyrics_line_lst[0]
             ls=LyricsStruck(filename)
-            lyrics_line_lst = ls.lyrics_line_lst
-            
-            lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
-            lyrics = lyrics.to_html()
-            wordcloud_pic = ls.word_cloud()
-            
+            print('ls',ls)
+            if ls is not None :
+                lyrics_line_lst = ls.lyrics_line_lst
+                lyrics_pic = lyrics_line_lst[0]
+                lyrics = pd.DataFrame(lyrics_line_lst[1:],columns=[lyrics_line_lst[0]])
+                lyrics = lyrics.to_html()
+                wordcloud_pic = ls.word_cloud()
+            else:
+                lyrics = None
+                lyrics_pic = None
+                wordcloud_pic = None                
+
         except Exception as ex:
             logging.warning(ex)
-            lyrics=None
-            wordcloud_pic="Can't get lyrics."
-            lyrics_pic = "Can't get lyrics"
+
         return render_template(
             'track.html',
             track =track,artist=artist,

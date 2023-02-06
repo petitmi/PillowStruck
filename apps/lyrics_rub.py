@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import time
 import random
 import os
-
+import json
+import re
 class LyricsRub:
     def __init__(self):
         self.headers={
@@ -15,33 +16,31 @@ class LyricsRub:
 
     def get_lyrics_link(self, q):
         '''Using web crawling to search and locate to track'''
-        
-        req = self.ss.get(f'https://www.musixmatch.com/search/{q}',headers=self.headers) 
-        soup = BeautifulSoup(req.text, features="lxml")
-        h2s = soup.find_all('h2',attrs={'class':'media-card-title'})
-        path = h2s[1].find_all('a')[0]
-        path = path['href']
-        # print('=============',path)
+        req = self.ss.get(f'http://api.musixmatch.com/ws/1.1/track.search?apikey=a7b1817fa0df0599087ed9355c77f61b&q={q}&page_size=3&page=1&s_track_rating=desc')
+        reqt= json.loads(req.text)
+        track_name = reqt['message']['body']['track_list'][0]['track']['track_name'].replace('-','')
+        track_artist = reqt['message']['body']['track_list'][0]['track']['artist_name'].replace('-','')
+        track_share_url = reqt['message']['body']['track_list'][0]['track']['track_share_url']
+        track_name = re.sub(' +','-',track_name)
+        track_artist = re.sub(' +','-',track_artist)
         time.sleep(random.uniform(0.8, 0.2))
-        return path
+        return track_name,track_artist,track_share_url
             
     def get_lyrics(self, q='space%20oddity%20david%20bowie'):
         '''Using web crawling to get the lyrics of the destinated track'''
-        path = self.get_lyrics_link(q)
-    
-        trackname = path.split('/')[2:]
-        trackname = '_'.join(trackname)
+        track_name,track_artist,track_share_url = self.get_lyrics_link(q)
+        # trackname = path.split('/')[2:]
+        trackname = track_artist+'_'+track_name
         filename = f"lyrics/{trackname}.txt"
+        print(filename,track_share_url)
         # if file does not exist:
         if not os.path.exists(filename):
         #   os.remove(filename)
-            # write lyrics title
+            # write lyrics titles
             f = open(filename, "w")
             f.write(trackname+'\n')
-
             #get lyrics from musixmatch
-            req = self.ss.get(f'https://www.musixmatch.com{path}', headers=self.headers
-            )
+            req = self.ss.get(track_share_url, headers=self.headers)
             soup = BeautifulSoup(req.text, features="lxml")
             spans = soup.find_all('span', attrs={'class':'lyrics__content__ok'})
             for span in spans:
@@ -60,9 +59,14 @@ class LyricsRub:
         comp_lyrics_str: ''
         """
         lyrics_line_lst = []
-        with open(filename) as f:
-            lyrics_line_lst = f.read().splitlines()
-            lyrics_line_lst = [i for i in lyrics_line_lst if i != '']
-            lyrics_str='. '.join(lyrics_line_lst)
+        if os.path.exists(filename):
+            with open(filename) as f:
+                lyrics_line_lst = f.read().splitlines()
+                lyrics_line_lst = [i for i in lyrics_line_lst if i != '']
+                lyrics_str='. '.join(lyrics_line_lst)
+        else:
+            lyrics_line_lst = None
+            lyrics_str = None
+
 
         return  lyrics_str, lyrics_line_lst
