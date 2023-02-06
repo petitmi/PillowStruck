@@ -12,7 +12,7 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 
 ## Web
 <table>
-<tr><th>**Step 1:** Search any keyword, including the "track", "artist" Object. </th> <th>**Step 2:** Get the results contain tracks and artists list.</th>
+<tr><th>Step 1: Search any keyword, including the "track", "artist" Object. </th> <th>Step 2: Get the results contain tracks and artists list.</th>
 
 </tr>
 <tr>
@@ -20,7 +20,8 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 <td><img width="350" alt="image" src="https://user-images.githubusercontent.com/43694291/216788454-f9506c73-f65f-4935-8490-7be47ae9f9eb.png">  </td>
 </tr>
 </table>
-**Step 3.1:** Click Tracks' "explore" to read track's detail, or click "home" to back to the search page. 
+
+**Step 3.1: Click Tracks' "explore" to read track's detail, or click "home" to back to the search page. 
 
 <table>
 <tr><th>lyrics word cloud </th><th>sentiment analysis</th><th>lyrics txt detail</th></tr>
