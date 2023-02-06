@@ -62,18 +62,39 @@ To be more impressing on user interaction, we deployed a [website](http://13.56.
 to be completed...
  
 ## Usage
+```
+PillowStruck
+|
+│   README.md
+│   cofig.yaml
+│   main.py
+|   requirements.txt
+|   documents
+└───apps
+    │
+    │   spotify_stare.py
+    │   lyrics_rub.py
+    │   lyrics_struck.py
+    │   artist_struck.py
+    └───[model apps]
+    |
+    |   app.py
+    |   templates
+    |   statics
+    └───[web apps]
+```
 
-```
-$ cd apps
-$ python app.py
-```
+
 
 Users can input a keyword, PillowStruck will call Spotify APIs to get search results, results will contain "Tracks" and "Artists" pandas.DataFrames. The "Tracks" df contains features like `track name`, `release_date`, `popularity`, `artist` and `album`, and "Artists" df contains features like `artist name`, `followers` and `genres`. PillowStruck also give a choice for users to explore specific track or artist details.   
 In the "Track" detail, it shows `wordcloud` and `Sentiment Analysis` of lyrics. The wordcloud uses package wordcloud to compute and visualize, while Sentiment Analysis uses package tweetnlp to compute and uses package altair to visualize. Sentiment analysis shows the sentiment label and its score.   
 In the "Artist" detail, it shows the `activity degree` along years of this artist by the count of their released tracks. Also it shows airtist's `top 10 tracks` and `latest 10 albums`.  
 
-> **Spotify APIs:** The Spotify APIs provides developers with a wealth of data, such as information about musicians and song albums, users' search history, song lists, and more. We can use this vast amount of data to build our own systems.    
-> **Musicmatch APIs and Scraping:** Musicmatch APIs mainly provide the lyrics of songs.
+**Run the website**  
+```
+$ cd apps
+$ python app.py
+```
 
 **Search keyword**  
 ```python
@@ -108,27 +129,6 @@ pop_albums = ats.get_artist_albums_by_name(q) # get latest 10 albums
 
 
 # References
-```
-PillowStruck
-|
-│   README.md
-│   cofig.yaml
-│   main.py
-|   requirements.txt
-|   documents
-└───apps
-    │
-    │   spotify_stare.py
-    │   lyrics_rub.py
-    │   lyrics_struck.py
-    │   artist_struck.py
-    └───[model apps]
-    |
-    |   app.py
-    |   templates
-    |   statics
-    └───[web apps]
-```
-```
-APIs: To be completed...
-```
+
+**Spotify APIs:** The Spotify APIs provides developers with a wealth of data, such as information about musicians and song albums, users' search history, song lists, and more. We can use this vast amount of data to build our own systems.    
+**Musicmatch APIs and Scraping:** Musicmatch APIs mainly provide the lyrics of songs.
