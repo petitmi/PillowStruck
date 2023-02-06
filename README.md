@@ -50,20 +50,19 @@ PillowStruck
 │   cofig.yaml
 │   main.py
 |   requirements.txt
-|
-└───app
-    │   extract input keywords
-    │   web crawl the lyrics
-    │   get the spotify features
-    │   analyze artist
-    │   analyze track lyrics 
+|   documents
+└───apps
     │
-    └───models|
+    │   spotify_stare.py
+    │   lyrics_rub.py
+    │   lyrics_struck.py
+    │   artist_struck,py
+    └───[model apps]
     |
     |   app.py
     |   templates
     |   statics
-    └───web apps│
+    └───[web apps]
 ```
 # Reference 
 To be completed...
