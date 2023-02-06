@@ -1,7 +1,7 @@
 
 # Overview
 
-PillowStruck(v0.0.1) uses spotify APIs and musixmatch web crawling to implement a API wrapper for analysis of specific artists, albums and tracks with pyhton.
+PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wrapper for analysis of specific artists, albums and tracks with pyhton.
 - Group name: **PillowStruck**
 - Members of the group: **Nyx Zhang, Tia Wang**  
 To be more impressing on user interaction, we deployed a website on AWS with free tier: [PillowStruck](http://13.56.81.102:8080/).  
