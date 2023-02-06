@@ -7,7 +7,6 @@ PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wr
 
 **Motivation:** We listen to music either for a rest to the soul or primal passion of human nature. Some of us enjoy more on the melodies or rhythms, some focus more on the lyrics, and some who can't be ignored are there to support their favorite artists. In this API, we will present both the features of the musical part and lyrical part for users to dive deep into the songs or the artisit they are interested.
 
-> **Note:** *However, lyrics acquirement and sentiment analysis can only run on private server instead of the above web server, due to financial and time restrictions. Because the free web server is so under-configured that it can't run deep learning that it cannot run Sentiment Analysis. In addition the main contributors, who still have tons of assaignments and upcoming quizzes, do not have time to write anti-block script for web crawling of musixmatch, by whom our AWS public IPs were blocked.*
 
 # Quick Start
 
@@ -57,6 +56,8 @@ To be more impressing on user interaction, we deployed a [website](http://13.56.
       </td>
    </tr>
  </table>
+    
+> **Note:** *However, lyrics acquirement and sentiment analysis can only run on private server instead of the above web server, due to financial and time restrictions. Because the free web server is so under-configured that it can't run deep learning that it cannot run Sentiment Analysis. In addition the main contributors, who still have tons of assaignments and upcoming quizzes, do not have time to write anti-block script for web crawling of musixmatch, by whom our AWS public IPs were blocked.*  
 
 ## Installation guides
 to be completed...
@@ -84,14 +85,13 @@ PillowStruck
     └───[web apps]
 ```
 
-
-
 Users can input a keyword, PillowStruck will call Spotify APIs to get search results, results will contain "Tracks" and "Artists" pandas.DataFrames. The "Tracks" df contains features like `track name`, `release_date`, `popularity`, `artist` and `album`, and "Artists" df contains features like `artist name`, `followers` and `genres`. PillowStruck also give a choice for users to explore specific track or artist details.   
+
 In the "Track" detail, it shows `wordcloud` and `Sentiment Analysis` of lyrics. The wordcloud uses package wordcloud to compute and visualize, while Sentiment Analysis uses package tweetnlp to compute and uses package altair to visualize. Sentiment analysis shows the sentiment label and its score.   
 In the "Artist" detail, it shows the `activity degree` along years of this artist by the count of their released tracks. Also it shows airtist's `top 10 tracks` and `latest 10 albums`.  
 
 **Run the website**  
-```
+```bash
 $ cd apps
 $ python app.py
 ```
