@@ -1,8 +1,8 @@
-from Test import test_artist_struck as tas
-from Test import test_spotify_stare as tss
-from Test import test_app as ta
-from Test import test_lyrics_rub as tlr
-from Test import test_lyrics_struck as tls 
+from Test.test_artist_struck import Test_artist_struck as tas
+from Test.test_spotify_stare import Test_spotify_stare as tss
+from Test.test_app import Test_app as ta
+from Test.test_lyrics_rub import Test_lyrics_rub as tlr
+from Test.test_lyrics_struck import Test_lyrics_struck as tls 
 
 
 import unittest
