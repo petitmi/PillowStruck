@@ -38,8 +38,8 @@ to be completed...
  
 ## Usage
 ```
-cd apps
-python app.py
+$ cd apps
+$ python app.py
 ```
 
 ### Code structure
@@ -58,12 +58,12 @@ PillowStruck
     │   analyze artist
     │   analyze track lyrics 
     │
-    └───computation|
+    └───models|
     |
-    |   apps
+    |   app.py
     |   templates
     |   statics
-    └───web│
+    └───web apps│
 ```
 # Reference 
 To be completed...
