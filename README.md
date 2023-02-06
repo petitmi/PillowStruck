@@ -17,14 +17,24 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 **Step 2:** Get the results contain tracks and artists list.   
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/43694291/216788454-f9506c73-f65f-4935-8490-7be47ae9f9eb.png">  
 
-**Step 3.1:** Click Tracks' "explore" to read track's detail, or click "home" to back to the search page.  
-  - *3.1.1:* lyrics word cloud    
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png">  
-  - *3.1.2:* sentiment analysis   
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png">  
-  - *3.1.2:* lyrics txt detail   
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png">   
-    
+**Step 3.1:** Click Tracks' "explore" to read track's detail, or click "home" to back to the search page. 
+
+<table>
+<tr><th>lyrics word cloud </th><th>sentiment analysis</th><th>lyrics txt detail</th></tr>
+   <tr>
+      <td rowspan="11">  
+      <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png">     
+      </td>
+      <td rowspan="11">
+      <td rowspan="11">  
+      <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png">      
+      </td>
+      <td><img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png"> 
+      </td>
+      <td rowspan="11">
+   </tr>
+   </table>
+
 **Step 3.2:** Click Artists' "explore" to read artist detail, or click "home" to back to the search page.    
   - *3.2.1:* artist activity analysis   
     <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788666-0fed05a5-3165-459a-bd9a-2a0a341ad461.png">  
