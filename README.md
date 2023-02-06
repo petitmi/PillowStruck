@@ -7,13 +7,14 @@ PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wr
 
 **Motivation:** We listen to music either for a rest to the soul or primal passion of human nature. Some of us enjoy more on the melodies or rhythms, some focus more on the lyrics, and some who can't be ignored are there to support their favorite artists. In this API, we will present both the features of the musical part and lyrical part for users to dive deep into the songs or the artisit they are interested.
 
-To be more impressing on user interaction, we deployed a website on AWS with free tier: [PillowStruck](http://13.56.81.102:8080/).  
-
 > **Note:** *However, lyrics acquirement and sentiment analysis can only run on private server instead of the above web server, due to financial and time restrictions. Because the free web server is so under-configured that it can't run deep learning that it cannot run Sentiment Analysis. In addition the main contributors, who still have tons of assaignments and upcoming quizzes, do not have time to write anti-block script for web crawling of musixmatch, by whom our AWS public IPs were blocked.*
 
 # Quick Start
 
 ## User Interface
+
+To be more impressing on user interaction, we deployed a [website](http://13.56.81.102:8080/) on AWS with free tier.
+
 <table>
 <tr><th>Step 1: Search any keyword, including the "track", "artist" Object. </th> <th>Step 2: Get the results contain tracks and artists list.</th>
 
