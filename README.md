@@ -68,22 +68,41 @@ $ cd apps
 $ python app.py
 ```
 
-Users can input a keyword and a type value of artist or track. If the input is about artist, the API will locate the most likely top M artist and output all their albums, all the tracks from each album and output the top selling albums and the most played songs. Otherwise if the typy value is track, it will locate the most likely top M songs and output the features like key, beat of the song, and the lyrics.
+Users can input a keyword, PillowStruck will call Spotify APIs to get search results, results will contain "Tracks" and "Artists" pandas.DataFrames. The "Tracks" df contains features like `track name`, `release_date`, `popularity`, `artist` and `album`, and "Artists" df contains features like `artist name`, `followers` and `genres`. PillowStruck also give a choice for users to explore specific track or artist details.   
+In the "Track" detail, it shows `wordcloud` and `Sentiment Analysis` of lyrics. The wordcloud uses package wordcloud to compute and visualize, while Sentiment Analysis uses package tweetnlp to compute and uses package altair to visualize. Sentiment analysis shows the sentiment label and its score.   
+In the "Artist" detail, it shows the `activity degree` along years of this artist by the count of their released tracks. Also it shows airtist's `top 10 tracks` and `latest 10 albums`.  
 
-### Spotify APIs   
-The Spotify APIs provides developers with a wealth of data, such as information about musicians and song albums, users' search history, song lists, and more. We can use this vast amount of data to build our own systems.
+> **Spotify APIs:** The Spotify APIs provides developers with a wealth of data, such as information about musicians and song albums, users' search history, song lists, and more. We can use this vast amount of data to build our own systems.    
+> **Musicmatch APIs and Scraping:** Musicmatch APIs mainly provide the lyrics of songs.
 
-If the input is about artist or track, our PillowStruck API will use the search, track and artist of the Spotify API to get the artist information and music features.  
+**Search keyword**  
+```python
+from spotify_stare import SpotifyStare
+q='David%20Bowie' #replace to your keyword
+search_results = SpotifyStare(q)
+artists, albums, tracks = search_results.search() # the results DataFrame of artists, albums, tracks individually.
 ```
-to be completed
+
+**Get track lyrics**   
+```python
+q='David%20Bowie' #replace to your keyword
+lyrics_file = get_lyrics(q) # write the lyrics in a file apps/lyrics/{Artist}_{Track}.txt
+```   
+
+**Generate track wordcloud picture and sentiment analysis**   
+```python
+from lyrics_struck import LyricsStruck
+lyrics_analysis = LyricsStruck(lyrics_file)
+lyrics_analysis.wordcloud() # wordcloud picture in apps/static/wordcloud_{Artist}_{Track}.png
+lyrics_analysis.visualize_sentiment() # sentiment analysis picture in apps/static/lyrics_{Artist}_{Track}.png
 ```
 
-### Musicmatch APIs and Scraping  
-Musicmatch APIs mainly provide the lyrics of songs.
-
-From the track information we will acquire from the input and Spotify APIs, we get the lyrics through Musicmatch APIs.
-```
-to be completed
+**Generate artist activity analysis and more**  
+```python
+ats = ArtistStruck()
+at_name = ats.get_artist_track_numbers_for_years(q) # artist activity analysis  picture in apps/static/{artist}.png
+pop_tracks = ats.get_artist_top_tracks_by_name(q) # get top 10 popular tracks
+pop_albums = ats.get_artist_albums_by_name(q) # get latest 10 albums
 ```
 
 
