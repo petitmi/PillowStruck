@@ -23,3 +23,4 @@
 - Group meeting (Discuss API interface issues)
 - Started to Work on the Test file and Coverage
 - wrote the word cloud and sentiment analysis on lyrics
+- Completed the demo and pre-released!
