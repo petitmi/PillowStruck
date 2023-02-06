@@ -58,7 +58,7 @@ table {
 
   {% if lyrics_sig==1 %}
   <a class="head">Due to ip restriction, lyrics is not available. Check available lyrics:</a>
-  <a  class="head" id='innerlink'>songs</a> <br>
+  <a  class="head" id='innerlink'>/songs-with-lyrics</a> <br>
   {% endif %}
   <br>
     <img src={{ url_for('static', filename='tracks/{}'.format(wordcloud_pic) ) }} style="display: block;width:80%;  margin-left: auto; margin-right: auto;"><br>
@@ -68,7 +68,7 @@ table {
 
 
 </body>
-<script>
+<!-- <script>
   document.getElementById("innerlink").href =  window.location.hostname+'songs-with-lyrics';
-    </script>
+    </script> -->
 </html>
