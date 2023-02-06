@@ -4,9 +4,12 @@
 PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wrapper for analysis of specific artists, albums and tracks with pyhton.
 - Group name: **PillowStruck**
 - Members of the group: **Nyx Zhang, Tia Wang**  
+
+**Motivation:** We listen to music either for a rest to the soul or primal passion of human nature. Some of us enjoy more on the melodies or rhythms, some focus more on the lyrics, and some who can't be ignored are there to support their favorite artists. In this API, we will present both the features of the musical part and lyrical part for users to dive deep into the songs or the artisit they are interested.
+
 To be more impressing on user interaction, we deployed a website on AWS with free tier: [PillowStruck](http://13.56.81.102:8080/).  
 
-**Note:** *However, lyrics acquirement and sentiment analysis can only run on private server instead of the above web server, due to financial and time restrictions. Because the free web server is so under-configured that it can't run deep learning that it cannot run Sentiment Analysis. In addition the main contributors, who still have tons of assaignments and upcoming quizzes, do not have time to write anti-block script for web crawling of musixmatch, by whom our AWS public IPs were blocked.*
+> **Note:** *However, lyrics acquirement and sentiment analysis can only run on private server instead of the above web server, due to financial and time restrictions. Because the free web server is so under-configured that it can't run deep learning that it cannot run Sentiment Analysis. In addition the main contributors, who still have tons of assaignments and upcoming quizzes, do not have time to write anti-block script for web crawling of musixmatch, by whom our AWS public IPs were blocked.*
 
 # Quick Start
 
@@ -58,12 +61,32 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 to be completed...
  
 ## Usage
+
 ```
 $ cd apps
 $ python app.py
 ```
 
-### Code structure
+Users can input a keyword and a type value of artist or track. If the input is about artist, the API will locate the most likely top M artist and output all their albums, all the tracks from each album and output the top selling albums and the most played songs. Otherwise if the typy value is track, it will locate the most likely top M songs and output the features like key, beat of the song, and the lyrics.
+
+### Spotify APIs   
+The Spotify APIs provides developers with a wealth of data, such as information about musicians and song albums, users' search history, song lists, and more. We can use this vast amount of data to build our own systems.
+
+If the input is about artist or track, our PillowStruck API will use the search, track and artist of the Spotify API to get the artist information and music features.  
+```
+to be completed
+```
+
+### Musicmatch APIs and Scraping  
+Musicmatch APIs mainly provide the lyrics of songs.
+
+From the track information we will acquire from the input and Spotify APIs, we get the lyrics through Musicmatch APIs.
+```
+to be completed
+```
+
+
+# References
 ```
 PillowStruck
 |
@@ -85,6 +108,6 @@ PillowStruck
     |   statics
     └───[web apps]
 ```
-# Reference 
-To be completed...
-
+```
+APIs: To be completed...
+```
