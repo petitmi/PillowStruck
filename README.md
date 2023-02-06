@@ -11,12 +11,15 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 # Quick Start
 
 ## Web
-**Step 1:** Search any keyword, including the "track", "artist" Object.  
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/43694291/216788363-defccfbb-1a9f-4d71-a86d-7ec73a55e600.png">   
+<table>
+<tr><th>**Step 1:** Search any keyword, including the "track", "artist" Object. </th> <th>**Step 2:** Get the results contain tracks and artists list.</th>
 
-**Step 2:** Get the results contain tracks and artists list.   
-<img width="500" alt="image" src="https://user-images.githubusercontent.com/43694291/216788454-f9506c73-f65f-4935-8490-7be47ae9f9eb.png">  
-
+</tr>
+<tr>
+<td><img width="350" alt="image" src="https://user-images.githubusercontent.com/43694291/216788363-defccfbb-1a9f-4d71-a86d-7ec73a55e600.png">   </td>
+<td><img width="350" alt="image" src="https://user-images.githubusercontent.com/43694291/216788454-f9506c73-f65f-4935-8490-7be47ae9f9eb.png">  </td>
+</tr>
+</table>
 **Step 3.1:** Click Tracks' "explore" to read track's detail, or click "home" to back to the search page. 
 
 <table>
