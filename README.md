@@ -23,25 +23,32 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 <tr><th>lyrics word cloud </th><th>sentiment analysis</th><th>lyrics txt detail</th></tr>
    <tr>
       <td rowspan="11">  
-      <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png">     
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png">     
       </td>
-      <td rowspan="11">
       <td rowspan="11">  
-      <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png">      
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png">      
       </td>
-      <td><img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png"> 
+      <td>
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png"> 
       </td>
-      <td rowspan="11">
    </tr>
-   </table>
+ </table>
 
-**Step 3.2:** Click Artists' "explore" to read artist detail, or click "home" to back to the search page.    
-  - *3.2.1:* artist activity analysis   
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788666-0fed05a5-3165-459a-bd9a-2a0a341ad461.png">  
-  - *3.2.2:* Top tracks list      
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788686-3ce4a52f-19f7-445c-930c-61b05a0a7bc5.png">    
-  - *3.2.3:* latest album list      
-    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788705-4946936d-0a6d-47ac-8af0-9ae10fa5d428.png">
+**Step 3.2:** Click Artists' "explore" to read artist detail, or click "home" to back to the search page. 
+<table>
+<tr><th>artist activity analysis </th><th>Top tracks list</th><th>latest album list</th></tr>
+   <tr>
+      <td rowspan="11">  
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788666-0fed05a5-3165-459a-bd9a-2a0a341ad461.png">  
+      </td>
+      <td rowspan="11">  
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788686-3ce4a52f-19f7-445c-930c-61b05a0a7bc5.png">    
+      </td>
+      <td>
+         <img width="200" alt="image" src="https://user-images.githubusercontent.com/43694291/216788705-4946936d-0a6d-47ac-8af0-9ae10fa5d428.png">
+      </td>
+   </tr>
+ </table>
 
 ## Installation guides
 to be completed...
