@@ -18,14 +18,20 @@ To be more impressing on user interaction, we deployed a website on AWS with fre
 <img width="500" alt="image" src="https://user-images.githubusercontent.com/43694291/216788454-f9506c73-f65f-4935-8490-7be47ae9f9eb.png">  
 
 **Step 3.1:** Click Tracks' "explore" to read track's detail, or click "home" to back to the search page.  
-Lyrics word cloud          |  Sentiment analysis  | Lyrics txt detail
-:-------------------------:|:-------------------------:
-![](https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png =300x)  |  ![](https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png=300x)  | ![](https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png=300x)
+  - *3.1.1:* lyrics word cloud    
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788712-2865711e-697b-4e98-97e0-0f394f083157.png">  
+  - *3.1.2:* sentiment analysis   
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788726-4a1272fb-e26c-4fa2-bb47-ae76515223a1.png">  
+  - *3.1.2:* lyrics txt detail   
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788565-70abbff6-892c-4e9f-9d28-5297cf1d9158.png">   
     
 **Step 3.2:** Click Artists' "explore" to read artist detail, or click "home" to back to the search page.    
-Artist activity analysis | Top tracks list | Latest album list    
-:-------------------------:|:-------------------------:
-<img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788666-0fed05a5-3165-459a-bd9a-2a0a341ad461.png"> |  <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788686-3ce4a52f-19f7-445c-930c-61b05a0a7bc5.png"> | <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788705-4946936d-0a6d-47ac-8af0-9ae10fa5d428.png">
+  - *3.2.1:* artist activity analysis   
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788666-0fed05a5-3165-459a-bd9a-2a0a341ad461.png">  
+  - *3.2.2:* Top tracks list      
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788686-3ce4a52f-19f7-445c-930c-61b05a0a7bc5.png">    
+  - *3.2.3:* latest album list      
+    <img width="300" alt="image" src="https://user-images.githubusercontent.com/43694291/216788705-4946936d-0a6d-47ac-8af0-9ae10fa5d428.png">
 
 ## Installation guides
 to be completed...
@@ -61,5 +67,4 @@ PillowStruck
 ```
 # Reference 
 To be completed...
-
 
