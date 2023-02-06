@@ -6,7 +6,7 @@ import matplotlib
 matplotlib.use('Agg')
 import unittest
 import requests
-from apps.artist_struck1 import ArtistStruck
+from apps.artist_struck import ArtistStruck
 
 
 class Test_artist_struck(unittest.TestCase):
