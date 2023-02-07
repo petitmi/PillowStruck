@@ -1,13 +1,16 @@
 # Contributions
-##### Nyx contributions for the project
+#### Nyx contributions for the project
+
 - app.py
+- templates&static
 - lyrics_rub.py
 - lyrics_struck.py
 - spotify_stare.py
 - readme.md
 - requirements.txt
 - NoteBook
-##### Tia contributions for the project
+
+#### Tia contributions for the project
 - propsal.md
 - artist_struck.py
 - unittest
