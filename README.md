@@ -11,7 +11,7 @@ PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wr
 
 
 
-**Name Meaning:** You just worked overnight because too much pressure recently. Exhausted, you turned mad and frantically **struck** your pillow. Your pillow feels hurt and not fair so decides to **strike**, then you cannot sleep anymore.
+**Name Meaning:** You just worked overnight because of so much pressure recently. Exhausted, you frantically **struck** your pillow to vent. Your pillow cried and felt not fair so **struck**, then you couldnot sleep anymore. You are now totally **struck** down.
 
 # Quick Start
 
