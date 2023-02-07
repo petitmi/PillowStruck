@@ -1,12 +1,17 @@
 
 # Overview
 
+<img src="https://user-images.githubusercontent.com/43694291/217196888-04d6d984-dc0f-4399-a163-8a52160ac2c2.png" align="right"  width="40%" height="40%">
+
 PillowStruck uses spotify APIs and musixmatch web crawling to implement a API wrapper for analysis of specific artists, albums and tracks with pyhton.
 - Group name: **PillowStruck**
 - Members of the group: **Nyx Zhang, Tia Wang**  
 
 **Motivation:** We listen to music either for a rest to the soul or primal passion of human nature. Some of us enjoy more on the melodies or rhythms, some focus more on the lyrics, and some who can't be ignored are there to support their favorite artists. In this API, we will present both the features of the musical part and lyrical part for users to dive deep into the songs or the artisit they are interested.
 
+
+
+**Name Meaning:** You just worked overnight because too much pressure recently. Exhausted, you turned mad and frantically **struck** your pillow. Your pillow feels hurt and not fair so decides to **strike**, then you cannot sleep anymore.
 
 # Quick Start
 
